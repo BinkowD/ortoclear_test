@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Ortoclear;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -9,6 +9,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
+
+    public function roles(){
+        return $this->belongsToMany('Ortoclear\Role');
+    }
 
     protected $table = 'users';
 

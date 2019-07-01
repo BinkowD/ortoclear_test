@@ -1,4 +1,5 @@
 <?php
+use PhpParser\ErrorHandler\Collecting;
 
 return [
 
@@ -67,7 +68,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Bogota',
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +81,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -160,6 +161,7 @@ return [
         Illuminate\Session\SessionServiceProvider::class,
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
+        JeroenNoten\LaravelAdminLte\ServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
         /*
@@ -169,11 +171,15 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        Ortoclear\Providers\AppServiceProvider::class,
+        Ortoclear\Providers\AuthServiceProvider::class,
+        // Ortoclear\Providers\BroadcastServiceProvider::class,
+        Ortoclear\Providers\EventServiceProvider::class,
+        Ortoclear\Providers\RouteServiceProvider::class,
+        /*
+         * Laravel Collective Servicies Providers...
+         */
+        Collective\Html\HtmlServiceProvider::class,
 
     ],
 
@@ -190,6 +196,7 @@ return [
 
     'aliases' => [
 
+        
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
@@ -225,6 +232,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 
