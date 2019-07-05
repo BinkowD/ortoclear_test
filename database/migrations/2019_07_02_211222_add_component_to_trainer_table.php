@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRolesTable extends Migration
+class AddComponentToTrainerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::table('trainers', function (Blueprint $table) {
+            //
             $table->string('cargo');
-            $table->string('descripcion');
-            $table->timestamps();
+            $table->string('email');
+            $table->string('password');
         });
     }
 
@@ -28,6 +28,8 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::table('trainers', function (Blueprint $table) {
+            //
+        });
     }
 }

@@ -16,7 +16,7 @@ class UserTableSeeder extends Seeder
         //
         $role_root = Role::where('cargo','root')->first();
         $role_paciente = Role::where('cargo','paciente')->first();
-        $role_odontologo = Role::where('cargo','odontologo')->first();
+        $role_doctor = Role::where('cargo','doctor')->first();
 
         /*$root = new Root();
         $root->name = auth()->user()->name;
@@ -25,7 +25,7 @@ class UserTableSeeder extends Seeder
         $root->password = auth()->user()->password;
         $root->save();*/
 
-        $root = new Root();
+        $root = new User();
         $root->name = "admid";
         $root->cargo = "root";
         $root->email = "admid@ortoclear.com";
@@ -33,15 +33,15 @@ class UserTableSeeder extends Seeder
         $root->save();
         $root->roles()->attach($role_root);
 
-        $root = new Root();
+        $root = new User();
         $root->name = "doctor";
-        $root->cargo = "odontologo";
+        //$root->cargo = "doctor";
         $root->email = "doctor@ortoclear.com";
         $root->password = bcrypt('query');
         $root->save();
-        $root->roles()->attach($role_odontologo);
+        $root->roles()->attach($role_doctor);
 
-        $root = new Root();
+        $root = new User();
         $root->name = "paciente";
         $root->cargo = "paciente";
         $root->email = "paciente@ortoclear.com";

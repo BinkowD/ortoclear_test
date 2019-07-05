@@ -11,3 +11,4 @@ class Role extends Model
         return $this->belongsToMany('Ortoclear\User');
     }
 }
+ 

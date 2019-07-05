@@ -4,6 +4,7 @@ namespace Ortoclear\Http\Controllers;
 
 use Ortoclear\Trainer;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Return_;
 
 class TrainerController extends Controller
 {
@@ -12,11 +13,13 @@ class TrainerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $trainer = new Trainer();
+        //$request->user()->authorizeRoles('root');
+        //$trainer = new Trainer();
         $trainer = Trainer::all();
+        //return $request;
         return view('trainer.index', compact('trainer'));
        
     }
@@ -40,6 +43,13 @@ class TrainerController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|max: 10',
+            'avatar' => 'required|image',
+            'slug' => 'required',
+            'password' => 'required'
+        ]);
+
         if($request->hasFile('avatar')){
             $file = $request->file('avatar');
             $name = time().$file->getClientOriginalName();
@@ -49,10 +59,14 @@ class TrainerController extends Controller
         //
         $trainer = new Trainer();
         $trainer->name = $request->input('name');
+        $trainer->slug = $request->input('slug');
+        $trainer->cargo = $request->input('cargo');
+        $trainer->email = $request->input('email');
+        $trainer->password = $request->input('password');
         $trainer->avatar = $name;
         $trainer->save();
         
-        return 'saved';
+        return redirect()->route('trainers.index');
         
         //return $request->input('name');
     }
@@ -63,9 +77,13 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
         //
+        $trainer = Trainer::where('slug','=',$slug)->firstOrFail();
+        //$trainer = Trainer::find($id);
+        //return $slug;
+        return view('trainer.show', compact('trainer'));
     }
 
     /**
@@ -74,9 +92,11 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Trainer $trainer)
     {
         //
+        //return $trainer;
+        return view('trainer.edit', compact('trainer'));
     }
 
     /**
@@ -86,9 +106,21 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Trainer $trainer)
     {
         //
+        $trainer->fill($request->except('avatar'));
+        if($request->hasFile('avatar')){
+            $file = $request->file('avatar');
+            $name = time().$file->getClientOriginalName();
+            $trainer->avatar = $name;
+            $file->move(public_path().'/images/', $name);
+        }
+
+        $trainer->save();
+        return redirect()->route('trainers.show', [$trainer])->with('status', 'Entrenador modificado correctamente');
+        //return $request;
+        //return $trainer;
     }
 
     /**
@@ -97,8 +129,14 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Trainer $trainer)
     {
         //
+        $file_path = public_path().'/images/'.$trainer->avatar;
+        \File::delete($file_path);
+        //return $file_path;
+        $trainer->delete();
+        return redirect()->route('trainers.index');
     }
+
 }

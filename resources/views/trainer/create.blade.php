@@ -3,41 +3,7 @@
 @section('title', 'Inicio')
 
 @section('content')
-    <!--<div class="container">
-        <form class="form-group" action="/trainers" method="POST" enctype="multipart/form-data">
-            
-            <div class="form-group">
-                <label for="">Nombre</label>
-                <input type="text" name="name" class="form-control">
-            </div>
-            <div class="form-group row">
-                <label for="cargo" class="col-md-4 col-form-label text-md-right">{{ __('') }}</label>
 
-                <div class="col-md-6">
-                    <input type="Radio" Name="cargo" value="odontologo" required> Doctor(a) &nbsp;
-                    <input type="Radio" Name="cargo" value="root" required> Root &nbsp;
-                    <input type="Radio" Name="cargo" value="paciente" required> Paciente
-                </div>
-            </div>
-            <div class="form-group">
-                    <label for="">E-Mail</label>
-                    <input type="mail" name="mail" class="form-control">
-            </div>
-            <div class="form-group">
-                    <label for="">Contraseña</label>
-                    <input type="text" name="password" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="">Avatar</label>
-                <input type="file" name="avatar" >
-            </div>
-            <button type="submit" class="btn btn-primary"> Guardar </button>
-        </form>
-        
-    </div>-->
-
-
-    
     <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -45,12 +11,6 @@
                         <div class="card-header">{{ __('Registrate') }}</div>
         
                         <div class="card-body">
-                            {!! Form::open(['route' => 'trainers.store', 'method' => 'POST', 'file' => true ]) !!}
-                            <!-- Campos del formulario -->
-                            {!! Form::label('nombre', 'Nombre:', array('class' => 'negrita')) !!}
-                            {!! Form::text('nombre',null,['class'=>'form-control', 'placeholder'=>'Escribe tu nombre', 'required' => 'required']) !!}
-                            {!! Form::close() !!}
-                            <br>
                             <form method="POST" action="/trainers" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group row">
@@ -66,14 +26,28 @@
                                         @enderror
                                     </div>
                                 </div>
+
+                                <div class="form-group row">
+                                        <label for="slug" class="col-md-4 col-form-label text-md-right">{{ __('Apodo') }}</label>
+            
+                                        <div class="col-md-6">
+                                            <input id="slug" type="text" class="form-control @error('name') is-invalid @enderror" name="slug" value="{{ old('slug') }}" required autocomplete="slug" autofocus>
+            
+                                            @error('slug')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
         
                                 <div class="form-group row">
                                         <label for="cargo" class="col-md-4 col-form-label text-md-right">{{ __('') }}</label>
             
                                         <div class="col-md-6">
-                                            <input type="Radio" Name="cargo" value="odontologo" required> Doctor(a) &nbsp;
-                                            <input type="Radio" Name="cargo" value="root" required> Root &nbsp;
-                                            <input type="Radio" Name="cargo" value="paciente" required> Paciente
+                                            <input type="Radio" Name="cargo" value="Doctor(a)" required> Doctor(a) &nbsp;
+                                            <input type="Radio" Name="cargo" value="Administrador" required> Root &nbsp;
+                                            <input type="Radio" Name="cargo" value="Paciente" required> Paciente
                                             @error('cargo')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -82,7 +56,7 @@
                                         </div>
                                 </div>
                                 <div class="form-group row">
-                                        <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Avatar') }}</label>
+                                        <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
             
                                         <div class="col-md-6">
                                             <input type="file" name="avatar" >
@@ -138,6 +112,13 @@
                                     </div>
                                 </div>
                             </form>
+                            @if ($errors->any())
+                                @foreach ($errors->all() as $error)
+                                    <div class="alert alert-danger" role="alert">
+                                        {{$error}}
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>

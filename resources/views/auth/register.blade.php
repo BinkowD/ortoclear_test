@@ -26,6 +26,19 @@
                         </div>
 
                         <div class="form-group row">
+                                <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input type="file" name="avatar" >
+                                </div>
+                                @error('avatar')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+
+                        <div class="form-group row">
                                 <label for="cargo" class="col-md-4 col-form-label text-md-right">{{ __('') }}</label>
     
                                 <div class="col-md-6">

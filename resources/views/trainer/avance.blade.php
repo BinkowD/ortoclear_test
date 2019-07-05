@@ -1,0 +1,1 @@
+<h1>Informacion del paciente</h1>

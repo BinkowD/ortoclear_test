@@ -12,17 +12,20 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
-        //
-        $user = new User();
-        $user->cargo = "root";
-        $user->save();
+        //  
+        $role = new Role();
+        $role->cargo = "root";
+        $role->descripcion = "Administrador";
+        $role->save();
 
-        $user = new User();
-        $user->cargo = "paciente";
-        $user->save();
-        
-        $user = new User();
-        $user->cargo = "odontologo";
-        $user->save();
+        $role = new Role();
+        $role->cargo = "doctor";
+        $role->descripcion = "Doctor(a)";
+        $role->save();
+
+        $role = new Role();
+        $role->cargo = "paciente";
+        $role->descripcion = "Paciente";
+        $role->save();
     }
 }
