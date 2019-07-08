@@ -15,8 +15,8 @@ class UserTableSeeder extends Seeder
     {
         //
         $role_root = Role::where('cargo','root')->first();
-        $role_paciente = Role::where('cargo','paciente')->first();
-        $role_doctor = Role::where('cargo','doctor')->first();
+        $role_paciente = Role::where('cargo','odontologo')->first();
+        $role_doctor = Role::where('cargo','paciente')->first();
 
         /*$root = new Root();
         $root->name = auth()->user()->name;
@@ -26,26 +26,42 @@ class UserTableSeeder extends Seeder
         $root->save();*/
 
         $root = new User();
-        $root->name = "admid";
+        $root->name = "Administrador";
         $root->cargo = "root";
-        $root->email = "admid@ortoclear.com";
+        $root->email = "root@ortoclear.co";
+        $root->password = bcrypt('Colombia2019');
+        $root->save();
+        $root->roles()->attach($role_root);
+
+        $root = new User();
+        $root->name = "Foo";
+        $root->cargo = "root";
+        $root->email = "foo@ortoclear.co";
         $root->password = bcrypt('query');
         $root->save();
         $root->roles()->attach($role_root);
 
         $root = new User();
-        $root->name = "doctor";
-        //$root->cargo = "doctor";
-        $root->email = "doctor@ortoclear.com";
-        $root->password = bcrypt('query');
+        $root->name = "Ortodocista_01";
+        $root->cargo = "odontologo";
+        $root->email = "clinica001@ortoclear.co";
+        $root->password = bcrypt('Clinica001');
         $root->save();
         $root->roles()->attach($role_doctor);
 
         $root = new User();
-        $root->name = "paciente";
+        $root->name = "Ortodocista_02";
+        $root->cargo = "odontologo";
+        $root->email = "clinica002@ortoclear.co";
+        $root->password = bcrypt('Clinica002');
+        $root->save();
+        $root->roles()->attach($role_doctor);
+
+        $root = new User();
+        $root->name = "Descubre";
         $root->cargo = "paciente";
-        $root->email = "paciente@ortoclear.com";
-        $root->password = bcrypt('query');
+        $root->email = "tratamiento@ortoclear.co";
+        $root->password = bcrypt('paciente001');
         $root->save();
         $root->roles()->attach($role_paciente);
     }

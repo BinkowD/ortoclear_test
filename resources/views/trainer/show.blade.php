@@ -17,7 +17,7 @@
                       <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                         Acerca de {{$trainer->name}}
                       </button>
-                      <a href="/trainers/{{$trainer->slug}}/edit" style="float:right" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Editar</a>
+                      <a href="historys" style="float:right" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Editar</a>
                     </h2>
                   </div>
               

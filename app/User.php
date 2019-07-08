@@ -24,7 +24,7 @@ class User extends Authenticatable
     public function hasAnyRole($roles){
         if(is_array($roles)){
             foreach ($roles as $role) {
-                if($this->hasRole($roles)){
+                if($this->hasRole($role)){
                     return true;
                 }
             }
@@ -37,8 +37,8 @@ class User extends Authenticatable
     }
 
     public function hasRole($role){
-        if($this->roles()->where('name', $role)->first()){
-            return true;
+        if($this->roles()->where('cargo', $role)->first()){
+            return true; 
         }
         return false;
     }

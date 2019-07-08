@@ -22,3 +22,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('trainers', 'TrainerController');
+Route::resource('historys', 'HistoryController');
+

@@ -16,7 +16,8 @@ class TrainerController extends Controller
     public function index(Request $request)
     {
         //
-        //$request->user()->authorizeRoles('root');
+        $request->user()->authorizeRoles('root');
+
         //$trainer = new Trainer();
         $trainer = Trainer::all();
         //return $request;

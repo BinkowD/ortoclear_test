@@ -5,6 +5,7 @@ namespace Ortoclear\Http\Controllers\Auth;
 use Ortoclear\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+
 class LoginController extends Controller
 {
     /*
@@ -25,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/trainers';
 
     /**
      * Create a new controller instance.
