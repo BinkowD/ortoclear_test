@@ -2,6 +2,7 @@
 
 namespace Ortoclear\Http\Controllers;
 
+use Ortoclear\History;
 use Ortoclear\Trainer;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Return_;
@@ -16,12 +17,13 @@ class TrainerController extends Controller
     public function index(Request $request)
     {
         //
-        $request->user()->authorizeRoles('root');
+        $request->user()->authorizeRoles(['odontolgo', 'root']);
 
         //$trainer = new Trainer();
         $trainer = Trainer::all();
+        $history = History::all();
         //return $request;
-        return view('trainer.index', compact('trainer'));
+        return view('trainer.index', compact(['trainer','history']));
        
     }
 
@@ -81,10 +83,11 @@ class TrainerController extends Controller
     public function show($slug)
     {
         //
+        $history = History::all();
         $trainer = Trainer::where('slug','=',$slug)->firstOrFail();
         //$trainer = Trainer::find($id);
         //return $slug;
-        return view('trainer.show', compact('trainer'));
+        return view('trainer.show', compact(['trainer','history']));
     }
 
     /**

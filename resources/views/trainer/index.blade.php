@@ -3,7 +3,8 @@
 @section('title', 'Inicio')
 
 @section('content')
-    
+<br>
+<a href="/trainers/create" style="float:right" class="btn btn-primary btn-lg" tabindex="-1" role="button" aria-disabled="true">+ Nuevo perfil</a>
     <div class="row">
         @foreach ($trainer as $itemtreiner)
         <div class="col-sm">
@@ -15,13 +16,14 @@
                   <div class="col-md-8">
                     <div class="card-body">
                       <h5 class="card-title">{{$itemtreiner->name}} ({{$itemtreiner->cargo}})</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <p class="card-text"><small class="text-muted"><a href="/trainers/{{$itemtreiner->slug}}">Ver más...</a></small></p>
+                      <p class="card-text"></p>{{$itemtreiner->password}}
+                    <p class="card-text"><small class="text-muted"><a href="/trainers/{{$itemtreiner->slug}}">Ver más...</a></small></p>
                     </div>
                   </div>
                 </div>
             </div>
         </div>
         @endforeach
+        
     </div>
 @endsection

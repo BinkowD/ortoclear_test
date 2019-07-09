@@ -28,7 +28,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                        <label for="slug" class="col-md-4 col-form-label text-md-right">{{ __('Apodo') }}</label>
+                                        <label for="slug" class="col-md-4 col-form-label text-md-right">{{ __('ID') }}</label>
             
                                         <div class="col-md-6">
                                             <input id="slug" type="text" class="form-control @error('name') is-invalid @enderror" name="slug" value="{{ old('slug') }}" required autocomplete="slug" autofocus>
@@ -47,7 +47,7 @@
                                         <div class="col-md-6">
                                             <input type="Radio" Name="cargo" value="Doctor(a)" required> Doctor(a) &nbsp;
                                             <input type="Radio" Name="cargo" value="Administrador" required> Root &nbsp;
-                                            <input type="Radio" Name="cargo" value="Paciente" required> Paciente
+                                            <!--<input type="Radio" Name="cargo" value="Paciente" required> Paciente-->
                                             @error('cargo')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -81,26 +81,18 @@
                                         @enderror
                                     </div>
                                 </div>
-        
+                                
                                 <div class="form-group row">
-                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
+                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Descripción') }}</label>
         
                                     <div class="col-md-6">
-                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                        <input id="password" type="textarea" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
         
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                    </div>
-                                </div>
-        
-                                <div class="form-group row">
-                                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar contraseña') }}</label>
-        
-                                    <div class="col-md-6">
-                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                     </div>
                                 </div>
         

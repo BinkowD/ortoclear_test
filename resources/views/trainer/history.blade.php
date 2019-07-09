@@ -1,1 +1,7 @@
-<h1>HOLA</h1>
+@extends('layouts.app')
+
+@section('title', $trainer->name)
+
+@section('content')
+
+@endsection
